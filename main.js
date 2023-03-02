@@ -5,13 +5,15 @@ const heroes = [
         name: 'Slate Slabrock',
         type: 'dwarf',
         damage: 5,
-        health: 100
+        health: 100,
+        startingHealth: 100,
     },
     {
         name: 'Flint Ironstag',
         type: 'elf',
         damage: 10,
-        health: 50
+        health: 50,
+        startingHealth: 50,
     }
 ]
 
@@ -20,7 +22,8 @@ const boss = {
     health: 100,
     maxHealth: 100,
     damage: 5,
-    level: 1
+    level: 1,
+    startingHealth: 100
 }
 
 
@@ -83,5 +86,29 @@ function levelUp() {
 
 }
 
+function bossAttack() {
+    heroes.forEach(h => {
+        h.health -= boss.damage
+        if (h.health < 1) {
+            h.health = 0
+            drawHeroes()
+            window.alert('you have lost loser', resetGame())
+
+
+
+        }
+    })
+
+    drawHeroes()
+}
+
+function resetGame() {
+    heroes.forEach(h => h.health = h.startingHealth)
+    boss.health = boss.startingHealth
+    drawBossHealth()
+    drawHeroes()
+}
+
+setInterval(bossAttack, 1000)
 drawHeroes()
 drawBossHealth()
