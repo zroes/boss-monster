@@ -70,10 +70,10 @@ function attack() {
     boss.health -= turnDamage
     console.log(boss)
     turnDamage = 0
-    drawBossHealth()
-    if (boss.health > 0) {
+    if (boss.health < 0) {
         levelUp()
     }
+    drawBossHealth()
 }
 
 function levelUp() {
