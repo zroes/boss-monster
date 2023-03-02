@@ -53,8 +53,8 @@ function drawBossHealth() {
     let bossHPElem = document.getElementById('boss-hp')
     template = `
     <div onclick="attack()" class="bg-dark" role="progressbar" aria-valuenow="${boss.health}" aria-valuemin="0"
-    aria-valuemax="${boss.maxHealth}" style="height: 20px">
-    <div class="progress-bar bg-danger" style="width: ${boss.health}%">${boss.health} / ${boss.maxHealth}</div>
+    aria-valuemax="${boss.maxHealth}" style="height: 24px">
+    <div class="progress-bar bg-danger" style="width: ${100 * (boss.health / boss.maxHealth)}%">${boss.health} / ${boss.maxHealth}</div>
   </div>`
     bossHPElem.innerHTML = template
 }
@@ -73,10 +73,10 @@ function attack() {
     boss.health -= turnDamage
     console.log(boss)
     turnDamage = 0
-    if (boss.health < 0) {
+    drawBossHealth()
+    if (boss.health > 0) {
         levelUp()
     }
-    drawBossHealth()
 }
 
 function levelUp() {
