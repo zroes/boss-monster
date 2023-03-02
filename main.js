@@ -26,6 +26,8 @@ const boss = {
     startingHealth: 100
 }
 
+let gold = 25
+
 
 
 let turnDamage = 0
@@ -80,6 +82,7 @@ function attack() {
 }
 
 function levelUp() {
+    gold += 25 * boss.level
     boss.level++
     boss.maxHealth = boss.maxHealth * 2
     boss.health = boss.maxHealth
@@ -110,8 +113,20 @@ function resetGame() {
 
 function addDamage() {
     heroes.forEach(h => {
-        h.damage *= 1.5
+        h.damage = math.floor(h.damage * 1.5)
     });
+    gold -= 50
+}
+
+function buyPotion() {
+    heroes.forEach(h => h.health += 20)
+    gold -= 30
+    drawGold()
+}
+
+function drawGold() {
+    let goldElem = document.getElementById("gold")
+    goldElem.innerText = gold.toString()
 }
 
 setInterval(bossAttack, 1000)
