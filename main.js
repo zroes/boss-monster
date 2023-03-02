@@ -49,7 +49,7 @@ function drawBossHealth() {
   let template = ''
   let bossHPElem = document.getElementById('boss-hp')
   template = `
-    <div onclick="attack()" class="bg-dark" role="progressbar" aria-valuenow="${boss.health}" aria-valuemin="0"
+    <div class="bg-dark mx-5" role="progressbar" aria-valuenow="${boss.health}" aria-valuemin="0"
     aria-valuemax="${boss.maxHealth}" style="height: 20px">
     <div class="progress-bar bg-danger" style="width: ${boss.health}%">${boss.health} / ${boss.maxHealth}</div>
   </div>`
