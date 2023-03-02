@@ -112,17 +112,19 @@ function resetGame() {
 }
 
 function addDamage() {
-  heroes.forEach(h => {
-    h.damage = Math.floor(h.damage * 1.5)
-  });
-  gold -= 50
+  if (gold >= 50) {
+    heroes.forEach(h => h.damage = Math.floor(h.damage * 1.5));
+    gold -= 50
+  }
   drawGold()
 }
 
 function buyPotion() {
-  heroes.forEach(h => h.health += 20)
-  gold -= 30
-  drawGold()
+  if (gold >= 30) {
+    heroes.forEach(h => h.health += 20)
+    gold -= 30
+    drawGold()
+  }
 }
 
 function drawGold() {
